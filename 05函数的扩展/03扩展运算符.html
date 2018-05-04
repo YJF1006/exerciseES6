@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+</head>
+<body>
+	<ul class="list">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>
+<script>	
+
+/**扩展运算符 ...
+ *1.将非数组变成数组（类数组 length）                                             
+ *2.将数组变成非数组（要里面的每一项的时候可以展开的时候用这个）                   
+ */
+
+//1.将非数组变成数组
+	let str ="123";
+	console.log([...str]);   //变成数组
+
+	let list =list.document.querySelector("li");
+	console.log([...list]);   //变成数组
+
+	function fn(){
+		console.log([...argumrnts]);
+	}
+	fn(1,32,4);
+
+
+//2.将数组变成非数组
+	let arr1 =[1,2,3,4];
+	let arr2 =[43,23,1];
+	//要合并arr1和arr2
+	let a = arr1.concat(arr2);  //方法1
+	let b = [...arr1,...arr2];  //方法2
+	console.log(a);
+	console.log(b);
+
+//例题求数组的最大值
+	let arr3 = [1,32,45,323,434,34];
+	//Math.max(1,32,45,323,434,34);
+	Math.max.apply(null,arr3);  //方法1
+	eval("Math.max("+arr3+")");  //会调用toString 然后变成字符串之后，调用eval
+	Math.max(...arr3);
+
+	function fn1(){};
+	fn1(...arr3);   //把数组变成非数组 一项一项的传进去
+</script>

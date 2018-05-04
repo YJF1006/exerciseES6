@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	 *1.定义“类”的方法的时候，前面不需要加上function这个关键字，直接把函数定义放进去了就可以了。
+	 *2.另外，方法之间不需要逗号分隔，加了会报错。
+	 * /
+	
+/*	 
+	//第一种情况	
+		class AA{
+			constructor(){
+				console.log(AA.name);
+			}
+		}
+		new AA();  //AA
+
+
+
+	//第二种情况
+		let A = class{
+			constructor(){
+				console.log(A.name);
+			}
+		}
+		new A();  //A
+*/
+
+//第三种情况
+	let A = class AA{
+		//这种情况下 AA只能在里面使用,因为constructor里面就是 类本身的函数，所以AA只能在里面使用
+		//不管用什么表示，类的名字永远是AA
+		constructor(){
+			
+			console.log(A.name);   //AA
+			console.log(AA.name);   //AA
+		}
+		getA (){
+			console.log(AA.name);
+		}
+	}
+	new A();  //AA
+	// new AA();   //报错，此时的 AA只能在里面使用
+
+	// let a = new AA();   //报错
+	let a = new A();
+	console.log(a.name);   //AA
+	a.getA();    //AA
+
+</script>

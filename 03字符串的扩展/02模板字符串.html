@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+<script>
+	 /*拼接字符串：
+	 		``(切换成英文字符，esc下面的按键)跟普通字符串一样使用，但是他可以添加变量${}
+
+	  */
+	 
+	let str = "DQZ";
+	let num = 1;
+	str+=num;
+	console.log(str);   //DQZ1
+
+
+	let class1 = "box",name = "DQZ";
+
+	//原来拼接字符串模板用+  例如
+	// document.body.innerHTML+= '<h1 class=' +class1+ '>'+name+'</h1>';
+
+	//ea6中 ``可以添加变量${}
+	document.body.innerHTML+= `<h1 class = "${class1}"> ${name}</h1>`;
+
+</script>

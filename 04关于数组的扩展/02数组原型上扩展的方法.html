@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+<script>
+	
+	/**所有数组实例上的方法，参数是从索引n到m的都是包含n不包含m(包头不包尾)
+		es6中数组遍历用 for of 
+
+	 *1.copyWithin  //原数组中读取内容，替换指定位置的内容，原数组的length是不变的(原数组会变)
+	 *	a.用法：copyWithin(target,begin,end)   //查找的时候序号包头不包尾
+	 *		参数(替换目标的起始位置target,查找内容的起始位置begin,查找内容的结束位置end)，最后进行替换
+	 *  b.原数组改变
+	 * 
+	 *2.fill  //按照指定字符填充数组，将数组的每一项都变成指定字符串（原数组会变）
+	 * 	a.用法: fill("指定字符"，替换的开始位置，替换的结束位置)
+	 *  b.原数组改变
+	 * 
+	 *3.includes  //判断数组中有没有某一项   返回值布尔值
+	 * 	a.用法：includes(查找的项，开始查找的位置)
+	 * 			参数：第一个是要查找的；第二个参数是开始查找位置的索引
+	 *
+	 * 
+	 *遍历数组的方法，参数是一个函数的。这个函数中的this是window,我们可以通过第二个参数改变函数中的this
+	 *		reduce 和reduceRight 中的函数 不可以改this
+	 * 
+	 * 
+	 *4.filter (es5)//过滤数组，根据返回值去过滤原数组(返回一个新的数组，原数组不变 )
+	 * 	a.用法：filter(function(item,index){
+	 *
+	 * 			//如果返回true就留下当前项，返回false不留下当前项
+	 * 			return 
+	 * 		})   
+	 * 	b.返回新的数组，原数组不变
+	 *
+	 *5.find //(返回值)先遍历数组，一旦参数函数返回true,停止查找返回当前项
+	 * 	a.用法：find(function(){}) 
+	 * 	b.注意：只能找一个
+	 *
+	 *6.findIndex //(返回值对应的索引)先遍历数组，一旦参数函数返回true,停止查找返回当前项所对应的索引
+	 * 	a.用法：findIndex(function(){})
+	 *  b.注意：只能找一个
+	 *
+	 *
+	 *
+	 *7.every //遍历数组，如果遍历每一项都返回true，最后结果为true，只要有一个为false结果就是false
+	 *	a.全都是true,才返回true
+	 *
+	 * 8.some  //遍历数组，只要有一项结果为true最后结果为true，
+	 *  a.只要有个返回true，就返回true
+	 *
+	 * 9.reduce  //迭代
+	 * 	a.用法：reduce(function(prev,item){
+	 * 				//prev 上一次的返回值   item当前项
+	 * 			},参数2)   
+	 * 	参数1：函数； 
+	 * 	参数2：作为初始的prev （因为第一次迭代的时候没有上一次的返回值，所以可以用参数2进行设置）
+	 *
+	 *
+	 * 10.reduceRight   //跟reduce一样，只是顺序从右开始
+	 *
+	 *
+	 *
+	 * 
+	 * 11.keys   //遍历每一项的索引的借口，可以使用for of遍历
+	 * 	a.用法；arr.keys()
+	 * 	b.注意：和for of 搭配
+	 * 	c.默认使用for of 遍历数组，默认遍历的就是每一项
+	 *
+	 * 12.entries  //遍历接口，可以遍历到索引和每一项,每一项遍历得到一个数组【索引，当前项】
+	 * 	a.用法：arr.entries()
+	 * 	b.注意：和for of 搭配
+	 * 	c.因为每一次遍历得到的是一个数组，一般可以通过数组的解构赋值获取到遍历的结果
+	 * 	
+	 */
+	
+	console.log(Array.prototype);
+
+	let arr1 = [1,2,3,4,5,6,7,8];
+
+	arr1.copyWithin(4,2,4);   //此时的arr=[1,2,3,4,3,4,7,8]   
+	console.log(arr1);    
+	/*	找到替换的开始位置：替换从序号4开始，
+		找到替换的内容：从序号2开始到序号4()   查的时候序号包括2不包括4  （找到的内容为3,4）
+		所以从序号为4的开始把内容替换为3,4
+	*/	
+	arr1.copyWithin(3,2);   // 此时的arr1 =[1,2,3,3,4,3,4,7]
+	console.log(arr1); 
+	/* 已经改过一次了，arr1已经不是原来的了
+		替换的开始位置：3
+	    替换的内容：从2到末尾 
+	 */
+	
+
+	console.log(arr1.fill("DQZ"));    //8项的每一项都变成了"DQZ"
+	let arr2 = [1,2,3,4,5,6,7,8];
+	console.log(arr2.fill("DQZ",3,5));  // 从索引3到5填充为指定字符串（包前不包后）
+	
+
+	let arr4 = ["dqz",3,2,4,"dqz"];
+	let arr = ary4.filter(function(item,index){
+		//如果返回true就留下当前项，返回false不留下当前项
+		return typeof item ==="number";  //留下数字
+	});
+	console.log(arr4);   //["dqz",3,2,4,"dqz"];
+	console.log(arr);    //[3,2,4]
+
+
+	let a = arr4.find(function(item){
+		return typeof item ==="number";
+	});
+	let i = arr4.findIndex(function(item){
+		return typeof item ==="string";
+	});
+	console.log(a);   //3
+	console.log(i);   //0（因为第一个string对应的索引是0）
+
+
+	console.log([1,2,3].includes(1));    //true
+	console.log([1,2,3].includes(1,1));  //false  从第一项开始判断
+
+
+	let arr71 = [1,2,3,4,5].every(function(item){
+		return typeof item === "number";
+	});
+	let arr72 = [1,2,3,4,'dqz'].every(function(item){
+		return typeof item === "number";
+	});
+	consoel.log(arr71);   //ture
+	consoel.log(arr72);   //false
+
+
+	let arr8 = [1,2,3,4,'dqz'].every(function(item){
+		return typeof item === "number";
+	});
+	console.log(arr8);   //true
+
+
+	let arr9 = [1,2,3,4,5];
+	arr9.reduce(function(prev,item){
+		//prev 上一次的返回值   item当前项的返回值
+		console.log(prev);   //[1,1,1,1]   第一次没有所以没有打印
+		return 1
+	});
+	//求和
+	arr9.reduce(function(prev,item){
+		return prev+item;
+	},10);
+	/**         
+	 *   prev              item             prev+item
+	 *   10                  1                10+1
+	 *    10+1              2                10+1+2=13
+	    10+1+2              3                10+1+2+3=16
+	 * 10+1+2+3             4                10+1+2+3+4=25
+	 */
+
+
+
+	let arr11 =["a","b","c","d"];
+	for(let key of arr5.keys()){
+		//key 索引
+		console.log(key); //0,1,2,3
+	}
+	//默认使用for of 遍历数组，默认遍历的就是每一项
+	for(let item of arr5){
+		console.log(item);   //a,b,c,d
+	}
+
+
+	for(let e of arr5.entries()){
+		console.log(e);   //每一次遍历得到一个数组[索引，当前项]，数组里面是索引和当前项
+	}
+	//既然是数组，那么就可以解构一下
+	for(let [index,item] of arr5.entries()){
+		console.log(index,item);   
+	}
+
+</script>

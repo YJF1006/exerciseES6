@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**async  /ə'zɪŋk/  函数默认返回一个promise对象
+	 *
+	 */
+	
+	async function getA(){
+		//return 出来的内容就是成功回调的参数
+		//这里错误了 ，就会被catch捕获到
+		//throw new Error("对不起，抛出了错误");
+		return "dqz";
+	}
+
+	//getA()  执行之后就会返回一个promise对象
+	getA().then((res)=>{
+		console.log(res);
+	}).catch((e)=>{
+		console.log(e);
+	});
+</script>

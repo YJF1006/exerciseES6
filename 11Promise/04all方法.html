@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/*
+	1.详细打印Promise的方法
+	2.all() 方法
+	3.Promise.all([每一项都是Promise,如果不是默认转为Promise]);
+	4.数组中每一项都是成功状态才会走成功回调，而且返回默认将每一项的参数，放在一个数组中传给回调函数
+		数组的顺序也是all里面的顺序
+	5.只要有一个错误就会走错误的回调，将第一个错误参数传给回调
+
+	 */
+	
+
+	console.dir(Promise);
+	
+
+	let p1 = new Promise((resolve,reject)=>{
+		resolve("dqz");
+	});
+	let p2 = new Promise((resolve,reject)=>{
+		resolve("es6");
+		//reject("p2Error");
+	});
+	let p3 = new Promise((resolve,reject)=>{
+		resolve("vue");
+	});
+
+
+	let pAll = Promise.all([p1,p2,p3]);  //也是Promise的一个实例
+	console.log(pAll);
+	pAll.then((res)=>{
+		console.log(res);		// ["dqz", "es6", "vue"]
+	}).catch((e)=>{
+		//一般有错误的时候把错误打印出来
+		console.log(e);
+	});
+
+</script>

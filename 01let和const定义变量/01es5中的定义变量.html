@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01 var和function</title>
+</head>
+<body>
+	<p>
+		在sublime3 里面想要直接运行es6  修改 Nodejs.sublime-build文件里面的以下参数即可
+		"shell_cmd": "babel-node  $file",
+	</p>
+</body>
+</html>
+<script>
+	/*
+	var和function定义变量特点
+		1..var  function   有变量提升
+	  		var 只会提前声明
+	  		function  既声明又定义
+	  	2.在全部作用域下，使用var和function声明变量会给Window增加属性
+	 */
+	
+	console.log(a);   //undefined
+	console.log(getA); //打印函数
+
+	a = 1;
+	function getA(){
+
+	};
+
+	var a =2;
+	console.log(window.a);
+	console.log("getA" in window);  //判断window里面有没有getA也可以用in
+
+
+		    let x1,x2;
+    ({x1,x2} = {x1:1,x2:2});
+    console.log(x1, x2);//拿括号包起来是因为块级作用域
+
+</script>
+
+
+
+
+

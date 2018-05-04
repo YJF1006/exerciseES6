@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/*1.let a = new class{}();  采用class表达式让类直接执行
+	
+
+	 */
+	
+//原来的方式
+	function BB(name){
+		this.name = name;
+	}
+	let bb = new BB("dqz");
+
+//es6的方式
+	class AA{
+		constructor(name){
+			this.name = name;
+		}
+	}
+	let aa= new AA("ES6");
+	console.log(aa);
+
+
+//采用class表达式让类直接执行
+	let a1 = new class{
+		constructor(age){
+			console.log(age);
+		}
+	}("18");
+</script>

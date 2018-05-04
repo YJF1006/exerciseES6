@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**Promise.race([p1,p2,p3])
+	 * 1.只要有一个状态改变，当前实例的状态就跟着改变，
+	 * 
+	 * 
+	 */
+	let p1 = new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			resolve("dqz");
+		},1000);          //延迟了1秒
+		
+		//reject("p1Error");
+	});
+	let p2 = new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			resolve("es6");
+		},2000);        //延迟了2秒
+		
+		//reject("p2Error");
+	});
+	let p3 = new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			resolve("vue"); 
+		},200);         //延迟了0.2秒
+	});
+
+	let pRace = Promise.race([p1,p2,p3]);   //也是Promise的一个实例
+	pRace.then((res)=>{
+		console.log(res);  //vue   因为vue延迟的最快变化最快
+	}).catch((e)=>{
+		console.log(e);
+	});
+</script>

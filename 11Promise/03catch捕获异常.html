@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="wrapper">
+		
+	</div>
+</body>
+</html>
+<script>
+	/*
+		1.then:方法里面只放一个，用catch来捕获错误
+		2.catch：是捕获错误的，如果new Promise中有错误会被捕获，如果then中回调有错误也可以捕获
+			一般最后会加一个catch
+	 */
+	function loadImg(url){
+		return new Promise((resolve,regect)=>{
+			let img = new Image();  //创建一个img实例
+			img.src= url;
+			img.onload = function(){  //img一旦触发onload事件，就表示成功
+				//成功  把创建好的img传给回调
+				resolve(img);   
+			};
+			img.onerror = function(e){ //img一旦触发onerror事件，就表示失败
+				//失败
+				reject(e);
+			}
+
+		});
+	
+	}
+	loadImg("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1308070342,332603640&fm=27&gp=0.jpg").then((img)=>{
+		let wrapper = document.querySelector(".wrapper");
+		wrapper.appendChild(img);
+		let a= 1;
+		let a= 1;
+	}).catch((e)=>{
+		//catch 是捕获错误的，如果new Promise中有错误会被捕获，如果then中回调有错误也可以捕获
+		//一般最后会加一个catch
+		console.log(e);
+	});
+</script>

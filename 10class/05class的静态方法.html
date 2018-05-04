@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/*
+	1.类就相当于原型,写在原型上的方法都被实例继承了
+	2.假如想给当前类本身加一些方法，我们可以给它加上静态方法（在方法前面加上关键字 static，这样这个方法不会被实例继承，只有类本身可以使用）  例如Array.of
+	3.静态方法不可以实例继承，但是可以被子类继承
+	 */
+	
+	class AA{
+		constructor(){
+			this.a="aa";
+		}
+		getA(){
+			console.log("嘿嘿");
+		}
+		static getB(){
+			console.log("我是AA的静态方法");
+		}
+
+	}
+	let aa = new AA
+	console.log(aa);   //{a:aa}
+	aa.getA();   //嘿嘿
+	//aa.getB();   //报错，因为getB是静态方法，实例拿不到
+	AA.getB()   //"我是AA的静态方法"
+
+
+//静态方法可以被子类继承
+	class F{
+		static getF(){
+			console.log("我是F的getF方法 ");
+		}
+	}	
+	class G extends F{
+		// constructor(){
+		// 	super();
+		// 	
+		// }
+		static getF(){
+			super.getF();
+		}
+	}
+	G.getF();  //"我是AA的静态方法"
+</script>

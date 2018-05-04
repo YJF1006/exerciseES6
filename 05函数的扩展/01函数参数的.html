@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	 *1.参数默认值   fn1
+	 *2.参数使用解构赋值 fn2  fn3  fn4
+	 *3.函数的length 属性，  指的是形参的个数（如果形参有默认值，那么length就会失真，变成没有 默认值形参的个数）
+	 *4.参数默认值的位置:一般参数的默认值放在最后面
+	 *5.arguments 类数组
+	 */
+	
+	//es5中常用的设置初始值
+	// function fn1(x,y){
+	// 	x = x || "dqz";
+	// 	y = y || "es6";
+	// }
+//1.参数默认值
+	// fn1(0)   //此时传0相当于false ，那么会执行"dqz"
+	function fn1(x="dqz",y="es6"){
+		console.log(x,y);   // 0 "es6"
+	}
+	fn1(0)
+
+
+//2.参数使用解构赋值 
+	function fn2({name="dqz",age="18"}){
+		//当不传的时候是undefined，undefined没有办法解构
+		console.log(name,age);
+	}
+	fn2() //报错了
+
+
+	function fn3({name="dqz",age="18"} = {}){
+		//当不传的时候默认传了{}，然后当传了{}时候，默认它的那么，age已经给了
+		//{name="dqz",age="18"} = {}
+		console.log(name,age);
+	}
+	fn3({})  //dqz 18
+
+	function fn4({name,age} = {name:'dqz',age:"18"}){
+		//但不传的时候执行 {name:'dqz',age:"18"}； 当传了的时候执行{name,age}
+		//所以传进来了{}，里面没有name ,age 所以是undefined undefined
+		console.log(name.age);
+	}
+	fn4({})  //undefined undefined
+
+
+//3.length 属性，
+	function fn5(){}
+	fn5(1,2);
+	console.log(fn5.length);   //0
+
+	function fn6(x,y){}
+	console.log(fn6.length);   //2
+
+//4.参数默认值的位置:一般参数的默认值放在最后面
+ 	function fn7(x=10,y=20){}
+ 	//fn(,1)  想给第一个使用默认值，第二个不使用默认值    会报错
+ 	
+
+//5.arguments 类数组
+	function fn8(...arg){
+		console.log(arguments);   //是类数组
+		console.log(arg);    //是个数组
+	}
+	fn8(1,2,3,4,5)
+
+
+//6.参数作用域问题
+//		注意：函数执行的时候先给形参赋值，形参也是私有变量，
+//		如果给形参的默认值是一个变量，先看是不是自己私有的变量，不是自己的再在全局中找是否有此变量，没有就报错
+	let m =10, n = 100;
+	function fn9(x=m,y=n){
+		//私有变量：x,y,m,n
+		//当开始执行函数的时候先是形参赋值，把m赋给x，此时函数内部的还没有执行所以私有变量没有m，就去全局中找到了
+		console.log(x);   //10
+		console.log(y);   //100
+		let m = "dqz";
+		let n = "es6"
+	}
+	fn9();
+
+	let x= 100;
+	function fn10(x,y=x){
+		//形参赋值的时候  x=1, y=x,x在自己的私有变量里面有是1,那么就不去全局中找了
+		console.log(x);   //1
+		console.log(y);   //1
+	} 
+	fn10(1);
+
+		
+</script>

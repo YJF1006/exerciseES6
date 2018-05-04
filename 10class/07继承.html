@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	 * 1.子类b继承父类A    	class B extends A{}
+	 * 2.子类里面要是写了constructor,那么必须在里面必须写super(); 
+	 *   	（要是不写constructor，那么会自动添加constructor和super()）
+	 * 		a、这里必须要写一个super  因为当前的类没有this  super 一旦写了之后它的this就继承父类
+			b、super(); 执行完成之后才会有this  super() 就是父类A的constructor
+			c、super();执行之前不可以使用this
+	 *
+	 *
+	 * 3.super的三个用法，看下面继承里面
+	 * 		a、在constructor上指的是父类的constructor
+	 * 		b、在原型上的方法指的是父类的原型
+	 * 		c、在静态方法上指的父类本身
+	 */
+	class A{
+		constructor(x){
+			this.x = x;
+		}
+		getX(){
+			console.log(this.x);
+		}
+		static getY(){
+			console.log(this);
+			console.log(this.y);
+		}
+	}
+
+	A.getY();  //函数  undefined
+
+
+//子类b继承父类A
+	class B extends A{
+		constructor(x){
+		//1.super 的第一种用法
+			//这里必须要写一个super  因为当前的类没有this  super 一旦写了之后它的this就继承父类
+			//super(); 执行完成之后才会有this  super() 就是父类A的constructor
+			//this.y = 100;    不可以在super(执行之前使用this)
+			super(x);
+		}
+		getX(){
+		//2.super的第二种用法
+			//这里的super指向父类A的原型
+			super.getX();
+
+		} 
+
+		//父类的静态方法也可以继承
+		static getY(){
+		//3.super的第三种用法
+			//这里的super 指向父类本身
+			super.getY(); 
+		}   
+		
+	}
+	let b = new B("dqz");
+	b.getX();   //dqz
+	B.getY();  //this是谁，.前面的就是谁
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	
+	/**
+	 * 
+	 */
+	
+//面试题   将一个json字符串变成一个json对象使用的是new Function
+	let str = `[{"name":"dqz",{"age":"18"}}]`;
+	let arr = (new Function("return "+str))();   //传一个参数是函数体
+	console.log(arr);
+
+	/*arr --> [{"name":"dqz",{"age":"18"}}]
+		function fn0(){
+			return [{"name":"dqz",{"age":"18"}}];
+		}
+	*/
+	
+//常规的
+	function fn(){}
+	console.log(fn.name);   //"fn"
+	console.log(function(){}.name);  //""   匿名函数的名字是空字符串
+
+//特殊的
+//	1.通过bind方法得到一个新的函数   name是"bound 原来函数的名字"
+	let fn1 =fn.bind(null);
+	console.log(fn1);
+
+//	2.通过构造函数方式创建一个函数   name是"anonymous"  (匿名)
+//	new Function("形参","函数体")    传一个代表函数体，传两个的时候第一个代表形参，第二个代表函数体
+//	function fn(形参){函数体}
+	let fn2 = new Function("x","y","console.log(x,y);return x+y");
+	console.log(fn2(10,100));
+	console.log(fn2.name);
+
+
+</script>

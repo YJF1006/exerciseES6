@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	 * 1.promise 一开始的状态是pending，由pending可以到达两个状态，分别是Fulfilled(成功)，Rejected(失败)
+	 * 2.pending通过自己里面的resolve() 方法去到达Fulfilled
+	 * 3.pendind通过自己里面的reject()  方法去到达Rejected
+	 *
+	 * 4.执行顺序：先执行 new promise() 中的函数  ==> 当前队列的同步代码  ==>then里面的回调
+	 * 5.Promise的实例有个then()方法是异步的，里面一般两个回调，一个是成功的回调，一个是失败的回调
+	 */
+	
+	let pro1 = new Promise((resolve,reject)=>{
+		//resolve  函数
+		//reject  函数
+		//resolve和reject这两个函数只能执行一个
+		
+		//如果这里面有错误，就会执行then中的第二个回调，而且会将错误信息传给函数
+		// let a =1;
+		// let a =1;
+		console.log("promise");
+		resolve("success");  //这个函数一旦执行，表示的Fulfilled  成功
+		reject("error");     //这个函数一旦执行，表示的Rejected   失败
+	});
+//then是异步的
+	pro1.then((res)=>{
+			//成功的回调
+			console.log(res);
+		},(e)=>{
+			//失败的回调
+			console.log("regect");
+			console.log(e);
+		});
+	console.log("ok");
+//上面三个的打印顺序:先执行了promise ，再执行了ok,最后执行了success
+</script>

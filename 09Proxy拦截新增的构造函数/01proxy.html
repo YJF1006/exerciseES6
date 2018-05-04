@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**Proxy 对对象默认操作拦截（或者是一些改写）
+	 * 1.用法：new Proxy({目标对象 target},{想要进行拦截的方法});
+	 * 	 * 		    参数：1.目标对象 target
+	 * 			          2.想要进行拦截的方法
+	 * 			          
+	 *拦截的方法(一共13种，详细的放在了02里面了)
+	 * 1.get  //只要是获取就会触发get,例如: proxy1.name
+	 * 		参数：1.target：目标对象  2.key：属性名  3.proxy:实例
+	 * 
+	 * 2.set //只要设置就会触发
+	 * 		参数set(target, propKey, value, receiver)
+	 *
+	 * 3.has  //拦截propKey in proxy的操作，返回一个布尔值。
+	 * 		参数 1.target：目标对象  2.propKey属性名：
+	 *
+	 * 4.apply //拦截 Proxy 实例作为函数调用的操作，	
+	 * 		参数：target, object, args
+	 * 		比如proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)。
+	 */
+	
+	let obj = {name:"dqz",age:"18"};
+	//让proxy1代理了obj,需要通过proxy1去操作代理obj
+	let proxy1 = new Proxy(obj,{
+		get:function(target, propKey, receiver){    //拦截获取操作
+			//target：目标对象,propKey：属性名,receiver:实例
+			console.log(arguments);
+			console.log(1);
+			//这个return什么，获取的就是什么（如果没有return就是undefined）
+			// return "你好";
+			return target[propKey];
+		},  
+		set:function(target, propKey, value, receiver){    //拦截设置操作
+			//propKey:属性名，  value：属性值
+			console.log("设置");
+			target[propKey] = value;
+			return true;
+		},
+		has:function(target,propKey){     //拦截   in操作
+			console.log("has");
+			//代码调试错误 ，所以先省略着
+			// if(propKey[startWith("_")]){
+			// 	return false;
+			// }
+			return propKey in target;
+		}
+	});
+	console.log(proxy1.name);   //1 undefined   以前由obj去获取name,现在由proxy去代理获取name
+
+	proxy1.age = 10;
+
+	console.log(obj);
+
+	console.log("name" in proxy1);  //true
+	console.log("__proto__" in proxy1);  //false
+
+
+	function getObj(){
+		console.log(this);
+		return {name:"dqz"};
+	}
+	let proxy2 = new Proxy(getObj,{
+		apply:function(target, object, args){
+			// obj： 给函数修改this的  ；args  表示函数执行的参数
+			// //函数执行会触发  1.函数直接执行()  2.call执行   3.apply 执行
+			// console.log(target, object, args);
+
+			console.log("apply");
+			if(object){   //需要修改this
+				object.__proto__.fn = target;   //让target指向object.fn   加载原型上就看不见了
+				object.fn(...args);   
+				delete object.__proto__.fn;
+			}else{   //否则，直接把后面的平铺传给目标对象
+				target(...args)
+			}
+			
+
+		}
+	});
+	proxy2.call(obj,1,2,3)    //proxy2代理的是函数
+</script>

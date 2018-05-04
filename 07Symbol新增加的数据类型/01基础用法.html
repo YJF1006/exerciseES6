@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**Symbol 是一个新的基本数据类型，而且是一个值类型的（在内存中直接存储数据本身）
+	 * 1.使用Symbol函数执行得到一个Symbol数据类型
+	 * 2.Symbol跟字符串差不多，但是使用Symbol函数得到一个数据，每一个都是完全不同的
+	 * 3.Symbol可以接受一个参数()，是对symbol数据的描述
+	 * 4.即使描述一样，但是值也是不同的
+	 *
+	 * 5.一般当做对象的属性，任意一个Symbol()得到的值都是不同的
+	 * 
+	 * 6.Symbol值是不可以转数字的，所以不可以跟其他值就行计算,也不可以进行字符串拼接
+	 * 7.Symbol可以转Boolean
+	 * 8.Symbol可以toString变成现实字符串
+	 *
+	 *
+	 * 9. Symbol.for()  //如果之前有相同参数的Symbol的值，就得到这个值返回，如果没有就创建一个新的Symbol
+	 * 10.Symbol.keyFor(symbol值)  //找到使用Symbol.for创建的值的描述（Symbol函数参数）
+	 * 		如果是Symbol创建的 那么找不到是undefined
+	 * 		必须是Symbol.for创建的，那么就可以找了
+	 */
+	
+	let sym1 = Symbol("foo");
+	let sym2 = Symbol("foo");
+	console.log(typeof(sym1));  //symbol
+	console.log(typeof(sym2));  //symbol
+	console.log(sym1 == sym2);  //false
+
+	let obj={
+		sym1:"dqz",     //属性名是sym1
+		[sym1]:"我的属性的变量名称"  //属性名是sym1变量Symbol("foo")
+	};
+	console.log(obj);
+	obj[sym2] = "es6";
+	console.log(obj);
+
+
+	// console.log(Symbol("1")+1);  //报错
+	// Number(Symbol(1));
+	// Symbol(1)+"1";
+	
+	console.log(!Symbol("1"));    //false
+
+	console.log(Symbol("dqz").toString());  //"Symbol(dqz)"
+	
+	//使用Symbol.for() 参数相同，值就相同
+	let d1 = Symbol.for("dqzes6");   //第一次for的时候没有，所以新建一个
+	let d2 = Symbol.for("dqzes6");   //第二次for的时候有了 ，就直接返回了这个值
+	console.log(d1 == d2);   //true
+
+	console.log(Symbol.keyFor(d1));  //dqzes6
+	console.log(Symbol.keyFor(sym1));   //undefined  因为sym是Symbol创建的，不是Symbol.for()创建的

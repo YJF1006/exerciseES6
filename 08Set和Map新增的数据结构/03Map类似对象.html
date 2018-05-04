@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**Map  类似于对象  它的属性名可以是任何数据类型
+	 * 构造函数方式创建一个Map实例
+	 * 1.参数是一个数组，数组中的每一项也是一个数组，有两个值 key value
+	 * 		 new Map([[key,value],[key,value],[key,value]]);
+	 * 2.一个对象 属性名必须是字符串，如果你写的不是字符串也默认是字符串。
+	 * 			想要用其他的数据类型作为属性名，一个普通的对象是做不到,但是Map是可以的
+	 * 3.Map 实例的key可以是任何数据类型
+	 *
+	 *Map原型上的方法
+	 *
+	 *1.get   //获取value   返回值是value
+	 *		a、用法：get(key)
+	 *
+	 * 
+	 *2.set   //设置值   返回值是修改后的Map实例（如果之前有过key就修改，没有就增加）  
+	 *		a、用法：set(key,value)
+	 *		b、实现链式写法
+	 * 
+	 *3.has   //判断key有没有对应的是value 值   返回值 true/false
+	 *
+	 *4.delete  //删除属性   返回值 true/false
+	 *
+	 *5.clear  //清空 没有参数  一般返回undefined
+	 *
+	 * 遍历的方法
+	 *
+	 *1.forEach  
+	 *
+	 *2.keys()  // 得到键map.keys()   for of遍历
+	 *
+	 *3.values()  // 得到值 map.values()   for of遍历
+	 *
+	 *4.entries()  //  得到键值  常跟解构一起用 for of 遍历，
+	 * 
+	 */
+	
+	
+	/*实践题   给你一个数组，将他变成Map实例
+		1. new 一个map
+		2.for of循环遍历利用entries()方法得到数组的index 和 item     
+		3.把得到的index和item添加到map中   （用set()方法）
+	*/
+	let arr1 = ["DQZ","ES","VUE","NODE"];   //数组没有key  他的key就相当于索引
+	let map3 = new Map;
+	for(let [index,item] of arr1.entries()){   //解构了数组
+		map3.set(index,item);   //把遍历到的的index 和item 添加给map3
+	}
+	console.log(map3);   //完成了将数组变成了Map实例
+
+
+
+	let arr = [1,2], o={};
+	let obj ={
+		name:"es6",
+		1:"1",
+		true:"true",
+		[arr]:arr,
+		[o]:o
+	};
+	console.log(obj);
+
+
+	let map1 = new Map([
+							[1,"dqz"],
+							[2,"yjf"],
+							[true,"es6"],
+							[o,{age:"18"}], //属性名和属性值都是对象
+							[arr,[1,2]]          //属性名和属性值都是数						]);
+	console.log(map1);
+
+	console.log(map1.get(1));   //dqz
+	console.log(map1.get(true));  //es6
+	console.log(map1.get(o));  //{age:"18"}
+	console.log(map1.get(arr));  //[1,2]
+
+	console.log(map1.set(1,2));    //把key为1的值修改为2
+	console.log(map1.set(false,1));   //没有key为false的，则增添 key为false 值为1
+
+	console.log(map1.has(false));   //true
+
+	console.log(map1.delete(1)); //true  删除属性名为1的
+
+	console.log(map1.clear());
+
+
+	//forEach keys values entries
+	let map2 = new Map([
+							[1,"dqz"],
+							[2,"yjf"],
+							[true,"es6"],
+							[o,{age:"18"}], //属性名和属性值都是对象
+							[arr,[1,2]]          //属性名和属性值都是数组
+						]);
+	map2.forEach((value,key,input)=>{
+		console.log(value);  //属性值
+		console.log(key);   //属性名
+		console.log(input);  //map实例
+	});
+
+
+	for(let key of map2.keys()){
+		console.log(key);
+	}
+
+	for(let vaule of map2.values()){
+		console.log(key);
+	}
+
+	for(let {key,value} of map2.entries()){
+		console.log(key，value);
+	}
+
+
+
+
+</script>

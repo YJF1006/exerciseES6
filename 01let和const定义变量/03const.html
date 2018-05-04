@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03const定义变量</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	const定义变量的特点
+		1.没有变量提升
+		2.不可以重复声明
+		3.不会给window增加属性
+		4.const定义变量，一旦声明必须赋值（let可以声明不赋值是undefined）
+		5.const定义的是一个常量，不可以重新赋值
+	 */
+	
+	let a ;
+	console.log(a);   //undefined
+	a=2;
+	a=3;
+	console.log(a);
+
+	const b = 1;
+	//b = 3;
+
+</script>

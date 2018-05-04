@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**
+	 *get  获取值，只要通过obj获取name属性值，就会触发，记得要return，
+	 *set  设置值，只要通过obj给name属性设置值就会触发这个set函数，然后进行修改完了之后return即可
+	 */
+	
+	let obj = {
+		name:"我是初始化name",
+		//
+		get:function(){
+			return name;
+		},
+		set:function(val){
+			this.name = val;
+			return this.name;
+		}
+	}
+	console.log(obj.name);
+	obj.name ="dqz";
+	console.log(obj.name);
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>	
+
+/**箭头函数
+ *1.箭头函数都是匿名函数
+ *2.一般的格式： let fn =(形参) =>{函数体}     (形参)=>{函数体} 
+ *3.省略写法：   let fn =x =>x+1;   //形参只有一个的时候可以省略() ;假如函数体只有一行代码，那么return 和{} 可以省略；
+ *4.通常函数当做参数的时候使用箭头函数
+ *5.箭头函数的特点
+ *		a、箭头函数没有this指向，箭头函数里面的this是上一级的作用域下的this
+ *		b、箭头函数没有arguments  （解决方法 参数变成...arg  ,此时arg就是相当于arguments拿到的数据而且还是个数组）
+ *		c、箭头函数不可以用作构造函数，因为不可以使用new执行
+ */
+
+ 	let arr1 = ["dqz",1,"es6",2];
+ 	let arr2 = arr1.filter(item=>typeof item === "number");
+ 	console.log(arr2);  //[1,2]
+
+
+ 	let obj = {
+ 		fn:function(){
+ 			let f=()=>{
+ 				console.log(this);
+ 			};
+ 			f();
+ 		}
+ 	};
+ 	obj.fn()   //obj  因为当f()执行的时候，要是不是箭头函数，那么this就是window了，但是是箭头函数所以往上找，找到fn，fn的this指向就是obj了
+
+
+ 	let fn1=()=>{
+ 		//console.log(arguments);  //arguments is not defined
+ 	};
+ 	fn1(1,2,3,4);
+	let fn2=(...arg)=>{
+ 		console.log(arg);  //这样就可以拿到了，而且还是一个数组
+ 	};
+ 	fn2(1,2,3,4)
+
+ 	let F=()=>{};
+ 	// console.log(new F);   //F is not a constructor
+
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>块级作用域</title>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+</body>
+</html>
+<script>
+	/**
+	 *1.{} : 一个{}就是一个块级作用域
+	 *2.块级作用域下，var和function跟原来用法没有区别，声明的变量依然在全局中可以拿到
+	 *3.在块级作用域下，let和const声明的变量是私有的
+	 *4.有{}的 不可以放在行首	for(){} ,if(){} , 对象{}
+	 *		{}如果想表示一个对象，不可以放在行首  
+	 *			在eval中，如果把字符串(里面是对象)变成对象，一定要用()包起来
+	 *		 	{name:"Cyan",age:19}//这样写会报错，当做块级作用域
+		   		 let obj = {name:"Cyan",age:19};({name:"Aqing",age:20})//这两种方式都可以
+		    
+		    if(){}  中的function只会提前声明不会定义，当条件成立先给函数赋值，代码再执行
+
+		    for(){}   此时全局已经拿不到i了，let声明的变量。在块级都是私有的
+	 *		
+	 *		
+	 */
+	
+	{
+		var a = 1;
+		function getA(){}；
+		let b = 2;
+	}
+	console.log(a);   //1
+	getA();            
+	// console.log(b);   //b is not defined
+	
+
+
+	/*
+	有{}的 不可以放在行首
+		for(){} ,if(){} , 对象{}
+	*/
+	
+	//对象{}
+			/*
+			{name:"Cyan",age:19}//这样写会报错，当做块级作用域
+		    let obj = {name:"Cyan",age:19};
+		    ({name:"Aqing",age:20})//这两种方式都可以
+			 */
+	{name:"dqz"} // 看成一个块级作用域   =  eval('{name:"dqz"}')  //把'{name:"dqz"}'字符串变成表达式
+	({name:"dqz"}) // 看成一个对象       =  eval('({name:"dqz"})')  //把'{name:"dqz"}'字符串变成表达式
+	console.log(eval('({name:"dqz"}'));   //eval(); 把括号里面的字符串变成表达式
+	
+
+	//if(){}    中的function只会提前声明不会定义，当条件成立先给函数赋值，代码再执行
+	if(0){
+		var c = 1;
+		function getC(){};
+	}
+	console.log(a,getC);   //undefined undefined
+
+
+	//for(){}
+	let list = document.querySelector("#list li");
+		//var 声明i
+		for(var i = 0;i<list.length;i++){
+			list[i].index = i;  //添加自定义属性来存储i得值，或者利用闭包
+			list[i].onclick = function(){
+				alert(this.index);
+			}
+		}
+		console.log(i);   //此时i可以取到
+
+		// let 声明i
+		for(let i = 0;i<list.length;i++){
+			list[i].index = i;  //添加自定义属性来存储i得值，或者利用闭包
+			list[i].onclick = function(){
+				alert(this.index);
+			}
+		}
+		console.log(i);   //此时全局已经拿不到i了，let声明的变量。在块级都是私有的
+		
+</script>

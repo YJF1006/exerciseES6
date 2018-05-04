@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**class写在原型上的方法不可枚举的
+	 * 1.原来的构造函数写在原型上的方法是可以枚举的
+	 * 2.只要可枚举就可以用for in 遍历  或者用Object.getOwnPropertyDescriptor()
+	 */
+
+//原来的	
+	// function F(){
+	// 	this.f="f";
+	// }
+	// F.prototype.getF = function(){};
+	// let f = new F;
+	// for(let key in f){
+	// 	console.log(key);
+	// }
+
+	class FF{
+		constructor(){
+			this.ff = "ff"
+		}
+		getF(){};
+	}
+	let ff = new FF;
+	for(let key in ff){
+		console.log(key);   //ff   只拿到了ff，没有拿到getF
+	}
+	console.log(Object.getOwnPropertyDescriptor(FF.prototype,"getF"));  //enumerable:false   不可枚举
+</script>

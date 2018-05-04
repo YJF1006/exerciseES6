@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**Set 类似数组，但是可以去重，new Set(arr)  
+			只有值value,没有键key
+	
+	 * 1.通过构造函数的方式创建一个Set实例
+	 * 2.参数是一个数组（或者类似数组只要是有iterable当前接口的数据）
+	 * 3.有iterable接口的：数组，arguments，元素集合，Set，Map，字符串
+	 * 4.会默认去重
+	 *
+	 *
+	 * 
+	 *Set属性
+	 * 1.size  表示Set实例的大小个数
+	 * 
+	 * 2.add   //增加，如果之前没有加上，之前有就不加了，返回值增加后的Set实例(可以实现链式编程)
+	 * 		参数一次只能加一个
+	 * 		
+	 *
+	 * 3.delete  //删除 返回值true/false    如果里面有这一项就删除成功true，没有此项就删除失败
+	 * 
+	 * 
+	 * 4.clear   //清空 没有返回值 undefined，
+	 * 		没有参数
+	 *
+	 *
+	 * 5.has   //判断有没有此项   返回值 true/false
+	 *
+	 * 遍历
+	 * 
+	 * 6.forEach
+	 * 
+	 * 7.keys
+	 *
+	 * 8.entries
+	 *
+	 * 9.values
+	 */
+	
+	console.log(new Set([1,2,3,4,4,5,3,2,1,4,6,7]));
+	console.log(new Set("12344536"));
+	function fn(){
+		console.log(new Set(arguments));
+	}
+	fn(1,2,3,4,32,2,4,3);
+
+	let set1 = new Set([1,2,"dqz",null,NaN,true]);
+	console.log(set1.add(10));
+
+	console.log(set1.delete(1));   //true
+	console.log(set1.delete(1000));  //false
+	console.log(set1);
+
+	console.log(set1.clear());  //undefined
+	console.log(set1);  //空了
+
+	let set2 = new Set([1,2,"dqz",null,NaN,true]);
+	console.log(set2.has(NaN));  //true
+
+	set2.forEach((item,index,input)=>{
+		//Set实例只有value没有key
+		//item,index:当前项 value
+		//input: 当前Set实例
+		console.log(arg);
+	});
+
+	for(let key of set2.key){
+		//key仍然是value值
+		console.log(key);
+	}
+	for(let val of set2.values()){
+		//val仍然是value值
+		console.log(val);
+	}
+
+	for(let [item,val] of set2.entries()){
+		//item,val全都是value值
+		console.log(item,val);
+	}
+
+</script>

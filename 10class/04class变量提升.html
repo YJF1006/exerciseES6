@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/*
+	1.function 会有变量提升
+	2.class 没有变量提升  ，ES6中的class跟let和const一样没有变量提升
+	
+	 */
+//1.
+	FF();
+	new FF();
+	function FF(){
+		this.f = "ff"
+	}
+
+//2.
+	// new GG;   //报错 GG is not defined
+	class GG{
+		constructor(){
+			this.gg = "gg";
+		}
+	}
+</script>

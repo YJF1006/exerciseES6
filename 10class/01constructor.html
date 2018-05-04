@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	/**类就是方法于 创建新对象的对象看作类
+	 * 1.类必须使用new执行，不可以作为普通函数执行
+	 */
+	
+/*JavaScript 语言中，生成实例对象的传统方法是通过构造函数
+	function Fn(){
+		this.x = 10;
+	}
+	Fn.prototype.getX = function(){};
+	let f = new Fn();
+*/
+
+	class A{
+		constructor(x){
+			//类本身的函数
+			//this:当前的实例
+			this.x =x; //添加私有属性
+			//return  的是基本数据类型，对实例没有影响，如果是引用数据类型会改变实例，一般不写return
+		}
+	}
+
+	let a = new A(10);
+	console.log(a);  //{x:10}
+	console.log(typeof A);  //"function"
+</script>

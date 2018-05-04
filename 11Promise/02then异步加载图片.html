@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="wrapper">
+		
+	</div>
+</body>
+</html>
+<script>
+	function loadImg(url){
+		return new Promise((resolve,regect)=>{
+			let img = new Image();  //创建一个img实例
+			img.src= url;
+			img.onload = function(){  //img一旦触发onload事件，就表示成功
+				//成功  把创建好的img传给回调
+				resolve(img);   
+			};
+			img.onerror = function(e){ //img一旦触发onerror事件，就表示失败
+				//失败
+				reject(e);
+			}
+
+		});
+	
+	}
+
+	loadImg("http://img.zcool.cn/community/010f87596f13e6a8012193a363df45.jpg@1280w_1l_2o_100sh.jpg").then((img)=>{
+		//成功之后   把图片加到.wrapper 里面
+		let wrapper = document.querySelector(".wrapper");
+		wrapper.appendChild(img);
+	},(e)=>{
+		//失败之后
+		console.log(e);
+	});
+</script>
+
