@@ -2,12 +2,14 @@
 * @Author: duqinzhi
 * @Date:   2018-05-01 10:34:58
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-05-01 12:11:59
+* @Last Modified time: 2018-05-05 13:21:57
 */
 
 /**对象的解构赋值
 	对象是无序的
  	1.如果变量名和属性名重名了，可以直接省略写法
+ 	2.默认值（当值为undefined的时候，才用到默认值）   对象默认赋值的时候用的是=
+ 	3.对象解构的时候{}不能位于行首，解决方法 用()包着  或者用另一个变量接收
   */
 
 	let {name1,age1} = {name1:"杜秦芝",age1:10};

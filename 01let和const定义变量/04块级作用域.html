@@ -48,7 +48,7 @@
 		for(){} ,if(){} , 对象{}
 	*/
 	
-	//对象{}
+//对象{}
 			/*
 			{name:"Cyan",age:19}//这样写会报错，当做块级作用域
 		    let obj = {name:"Cyan",age:19};
@@ -59,7 +59,7 @@
 	console.log(eval('({name:"dqz"}'));   //eval(); 把括号里面的字符串变成表达式
 	
 
-	//if(){}    中的function只会提前声明不会定义，当条件成立先给函数赋值，代码再执行
+//if(){}    中的function只会提前声明不会定义，当条件成立先给函数赋值，代码再执行
 	if(0){
 		var c = 1;
 		function getC(){};
@@ -67,7 +67,7 @@
 	console.log(a,getC);   //undefined undefined
 
 
-	//for(){}
+//for(){}
 	let list = document.querySelector("#list li");
 		//var 声明i
 		for(var i = 0;i<list.length;i++){
