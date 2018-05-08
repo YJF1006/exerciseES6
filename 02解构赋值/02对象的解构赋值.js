@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-05-01 10:34:58
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-05-05 13:21:57
+* @Last Modified time: 2018-05-06 14:51:07
 */
 
 /**对象的解构赋值
@@ -26,9 +26,11 @@
 
 
 //4.数组可以这样写，但是对象这样不行，因为{}不能放在行首，解决方法1.
-	// let x1,x2;
-	// [x1,x2] =[1,2];
+	let y1,y2;
+	[y1,y2] =[1,2];
+	console.log(y1,y2);
 
-    let {x1,x2} = {x1:1,x2:2};
+	let x1,x2;
+    ({x1,x2} = {x1:1,x2:2});
     console.log(x1, x2);//拿括号包起来是因为块级作用域
   

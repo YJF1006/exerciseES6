@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </body>
 </html>
 <script>
-	/**
+	/**Promise 
 	 * 1.promise 一开始的状态是pending，由pending可以到达两个状态，分别是Fulfilled(成功)，Rejected(失败)
 	 * 2.pending通过自己里面的resolve() 方法去到达Fulfilled
 	 * 3.pendind通过自己里面的reject()  方法去到达Rejected
@@ -26,7 +26,7 @@
 		//如果这里面有错误，就会执行then中的第二个回调，而且会将错误信息传给函数
 		// let a =1;
 		// let a =1;
-		console.log("promise");
+		// console.log("promise");
 		resolve("success");  //这个函数一旦执行，表示的Fulfilled  成功
 		reject("error");     //这个函数一旦执行，表示的Rejected   失败
 	});
